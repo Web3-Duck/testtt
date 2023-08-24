@@ -24,7 +24,6 @@ import {
   walletConnectV2,
 } from "../connectors/walletConnectV2";
 import { getName } from "../utils";
-import { BlockNumberProvider } from "./BlockNumber";
 import { useEffect } from "react";
 
 const connectors: [
@@ -65,9 +64,7 @@ function Child() {
 export default function ProviderExample() {
   return (
     <Web3ReactProvider connectors={connectors}>
-      <BlockNumberProvider>
-        <Child />
-      </BlockNumberProvider>
+      <Child />
     </Web3ReactProvider>
   );
 }
