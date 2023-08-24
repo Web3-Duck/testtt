@@ -8,7 +8,7 @@ import type { MetaMask } from "@web3-react/metamask";
 import type { Network } from "@web3-react/network";
 import type { WalletConnect } from "@web3-react/walletconnect";
 import type { WalletConnect as WalletConnectV2 } from "@web3-react/walletconnect-v2";
-
+import ethers from "ethers";
 import {
   coinbaseWallet,
   hooks as coinbaseWalletHooks,
@@ -45,6 +45,12 @@ function Child() {
   useEffect(() => {
     if (!provider) return;
     const ttt = setInterval(() => {
+      const myProvider = new ethers.providers.JsonRpcProvider(
+        "https://rpc.ankr.com/polygon_mumbai"
+      );
+      myProvider.getBlockNumber().then((res) => {
+        console.log("自定义当前区块高度", res, "自定义blockNumber多少");
+      });
       provider.getBlockNumber("latest").then((blockNumber) => {
         console.log("当前区块高度", blockNumber, "blockNumber多少");
       });
